@@ -52,3 +52,21 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+
+# JetBrains Rider
+.idea/
+
+# Local environment files
+.env
+.env.*
