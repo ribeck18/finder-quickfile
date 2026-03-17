@@ -3,7 +3,7 @@ A simple application to quickly add simple files, such as .txt or .md, when brow
 
 
 # Class Diagram
-''' mermaid
+'''mermaid
 classDiagram
   class File {
     -_extension: str
