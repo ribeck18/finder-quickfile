@@ -3,7 +3,7 @@ A simple application to quickly add simple files, such as .txt or .md, when brow
 
 
 # Class Diagram
-
+''' mermaid
 classDiagram
   class File {
     -_extension: str
@@ -94,3 +94,4 @@ classDiagram
   FileRequest --> Controller
   Controller --> BuildFile
   BuildFile --> Controller
+'''
