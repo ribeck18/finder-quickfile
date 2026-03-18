@@ -1,19 +1,39 @@
-using System.Dynamic;
-
 class FileRequest
 {
-    private string _filePath;
-    private string _fileExtension;
-    private string _fileName;
-    private string _fileContents;
+    //Attributes
+    private string _name;
+    private string _extension;
+    private Dictionary<string, Dictionary<int, string>> templateOptions;
+    private int _templateChoice;
+    private string _path;
 
-    public FileRequest(string path, string extension, string name, string contents)
+    public FileRequest(string name, string extension)
     {
-        _filePath = path;
-        _fileExtension = extension;
-        _fileName = name;
-        _fileContents = contents;
+        _name = name;
+        _extension = extension;
     }
 
-    public Dictionary<string, string> GetFile() { }
+    //methods
+    public int SetTemplate() { }
+
+    public string SetPath(string path)
+    {
+        _path = path;
+        return path;
+    }
+
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public string GetExtension()
+    {
+        return _extension;
+    }
+
+    public int GetTemplate()
+    {
+        // need to return a selection from the template options using templateChoice as the key.
+    }
 }
