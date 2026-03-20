@@ -4,7 +4,7 @@ class FileRequest
     private string _name;
     private string _extension;
     private Dictionary<string, Dictionary<int, string>> _templateOptions;
-    private int _templateChoice;
+    private string _templateChoice;
     private string _path;
 
     public FileRequest(string name, string extension)
@@ -17,9 +17,9 @@ class FileRequest
     }
 
     //methods
-    public int SetTemplate(string extension, int templateChoice)
+    public void SetTemplate(string extension, int templateChoice)
     {
-        dictChoice =
+        _templateChoice = _templateOptions[extension][templateChoice];
     }
 
     public string SetPath(string path)
@@ -38,9 +38,9 @@ class FileRequest
         return _extension;
     }
 
-    public int GetTemplate()
+    public string GetTemplate()
     {
-        // need to return a selection from the template options using templateChoice as the key.
+        return _templateChoice;
     }
     public string GetPath()
     {
