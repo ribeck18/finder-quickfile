@@ -43,8 +43,6 @@ abstract class FileType
     protected static string ToPascalCase(string input)
     {
         string result = Regex.Replace(input, @"\s", "_");
-        result = Regex.Replace(result, @"()?:^[\s_-])(\w)", match => match.Groups[1].Value.ToUpper());
-
-        return result;
+        result = Regex.Replace(result, string.)
     }
 }
