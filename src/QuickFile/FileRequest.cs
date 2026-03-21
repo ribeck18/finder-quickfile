@@ -46,4 +46,13 @@ class FileRequest
     {
         return _path;
     }
+    public Dictionary<string, string> GetFileDict()
+    {
+        Dictionary<string, string> fileDict = new Dictionary<string, string>();
+        fileDict.Add("name", _name);
+        fileDict.Add("extension", _extension);
+        fileDict.Add("template", _templateChoice);
+
+        return fileDict;
+    }
 }
