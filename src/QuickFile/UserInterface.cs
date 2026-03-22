@@ -1,7 +1,7 @@
 class UserInterface
 {
     //Attributes
-    var _ui;
+    // var _ui;
     string _name;
     string _extension;
     int _templateChoice;

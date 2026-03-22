@@ -2,35 +2,36 @@ class BuildFile
 {
     private FileRequest _filerequest;
 
-    public BuildFile(FileRequest fileRequest)
+    public BuildFile(FileRequest request)
     {
-        _filerequest = fileRequest;
+        _filerequest = request;
     }
 
-    public FileType BuildFile()
+    public FileType CreateFile()
     {
         Dictionary<string, string> fileDict = _filerequest.GetFileDict();
         string extension = fileDict["extension"];
         //add several if statements here to check what file extension is in the dic. then build a file using the correct file type.
-
+        FileType file;
         if (extension == "txt")
         {
-            TxtType file = new TxtType(fileDict["name"], extension, fileDict["template"]);
+            file = new TxtType(fileDict["name"], extension, fileDict["template"]);
             return file;
         }
         else if (extension == "md")
         {
-            MarkdownType file = new MarkdownType(fileDict["name"], extension, fileDict["template"]);
+            file = new MarkdownType(fileDict["name"], extension, fileDict["template"]);
             return file;
         }
         else if (extension == "py")
         {
-            PythonType file = new PythonType(fileDict["name"], extension, fileDict["template"]);
+            file = new PythonType(fileDict["name"], extension, fileDict["template"]);
             return file;
         }
-        else if (extension == "cs")
+        else
         {
-
+            file = new CSharpType(fileDict["name"], extension, fileDict["template"]);
+            return file;
         }
     }
 }
