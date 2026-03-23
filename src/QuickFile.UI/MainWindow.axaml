@@ -1,9 +1,31 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="QuickFile.UI.MainWindow"
-        Title="QuickFile.UI">
-    Welcome to Avalonia!
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+    x:Class="QuickFile.UI.MainWindow"
+    Title="QuickFile.UI">
+
+
+    <StackPanel>
+        <TextBlock Margin="5" FontSize="24" HorizontalAlignment="Center" Text="QuickFile">
+        </TextBlock>
+
+        <Grid ShowGridLines="False" Margin="5" ColumnDefinitions="120, 100"
+            RowDefinitions="Auto, Auto">
+            <TextBlock Margin="5" Grid.Row="0" Grid.Column="0">File Name</TextBlock>
+            <TextBox Margin="5" Grid.Row="0" Grid.Column="1" Text="Untitled" Name="name"></TextBox>
+
+            <TextBlock Margin="5" Grid.Row="1" Grid.Column="0">Extension</TextBlock>
+            <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" SelectedIndex="0"
+                MaxDropDownHeight="100" Name"extension">
+                <ComboBoxItem>.txt</ComboBoxItem>
+                <ComboBoxItem>.md</ComboBoxItem>
+                <ComboBoxItem>.py</ComboBoxItem>
+                <ComboBoxItem>.cs</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+
+        <Button HorizontalAlignment="Center" Click="ButtonOnClick">Create File</Button>
+    </StackPanel>
 </Window>
