@@ -38,6 +38,8 @@ class Controller
         FileType file = BuildFile();
         string fileContent = file.GetTemplate();
         string path = $"{_path}/{file.GetFileName()}";
+        //this is for debugging
+        Console.WriteLine(path);
 
         File.WriteAllText(path, fileContent);
     }
