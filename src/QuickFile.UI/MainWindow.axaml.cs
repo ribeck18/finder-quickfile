@@ -15,6 +15,5 @@ public partial class MainWindow : Window
     {
         string filename = name.Text;
         string fileExtension = extension.Text;
-        Dictionary<string, string> fileDict = new Dictionary<string, string>();
     }
 }

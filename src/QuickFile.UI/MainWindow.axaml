@@ -18,7 +18,7 @@
 
             <TextBlock Margin="5" Grid.Row="1" Grid.Column="0">Extension</TextBlock>
             <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" SelectedIndex="0"
-                MaxDropDownHeight="100" Name"extension">
+                MaxDropDownHeight="100" Name="extension">
                 <ComboBoxItem>.txt</ComboBoxItem>
                 <ComboBoxItem>.md</ComboBoxItem>
                 <ComboBoxItem>.py</ComboBoxItem>
