@@ -5,9 +5,9 @@ abstract class FileType
     //Attributes
     protected string _name;
     protected string _extension;
+
     // private string _content;
     private string _template;
-    protected string _fileName;
 
     //Constructor
     public FileType(string name, string extension, string template)
@@ -22,15 +22,20 @@ abstract class FileType
     {
         return _name;
     }
+
     public string GetExtension()
     {
         return _extension;
     }
+
     public string GetFileName()
     {
-        return _fileName;
+        string fileName = $"{_name}.{_extension}";
+        return fileName;
     }
+
     public abstract string FormatFileName();
+
     public string GetTemplate()
     {
         return _template;
@@ -45,10 +50,15 @@ abstract class FileType
 
         return result;
     }
+
     protected static string ToPascalCase(string input)
     {
         string result = Regex.Replace(input, @"\s", "_");
-        result = Regex.Replace(result, @"()?:^[\s_-])(\w)", match => match.Groups[1].Value.ToUpper());
+        result = Regex.Replace(
+            result,
+            @"()?:^[\s_-])(\w)",
+            match => match.Groups[1].Value.ToUpper()
+        );
 
         return result;
     }
