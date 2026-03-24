@@ -31,6 +31,11 @@ abstract class FileType
         return _fileName;
     }
     public abstract string FormatFileName();
+    public string GetTemplate()
+    {
+        return _template;
+    }
+
     protected static string ToSnakeCase(string input)
     {
         string result = Regex.Replace(input, @"\s", "_");

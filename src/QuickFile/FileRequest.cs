@@ -4,57 +4,29 @@ class FileRequest
     private string _name;
     private string _extension;
     private Dictionary<string, Dictionary<int, string>> _templateOptions;
-    private string _templateChoice;
+    private int _templateChoice;
     private string _path;
 
-    public FileRequest()
+    public FileRequest(string name, string extension, int templateChoice, string path)
     {
-        // _name = name;
-        // _extension = extension;
+        _name = name;
+        _extension = extension;
+        _templateChoice = templateChoice;
+        _path = path;
         _templateOptions = new Dictionary<string, Dictionary<int, string>>
         {
             {
-                "MarkDown",
+                "md",
                 new Dictionary<int, string> { { 1, "# MARKDOWN HEADER" } }
             },
         };
     }
 
     //methods
-    public void SetTemplate(string extension, int templateChoice)
-    {
-        _templateChoice = _templateOptions[extension][templateChoice];
-    }
-
-    public void SetName(string name)
-    {
-        _name = name;
-    }
-
-    public void SetExtension(string extension)
-    {
-        _extension = extension;
-    }
-
-    public string SetPath(string path)
-    {
-        _path = path;
-        return path;
-    }
-
-    public string GetName()
-    {
-        return _name;
-    }
-
-    public string GetExtension()
-    {
-        return _extension;
-    }
-
     public string GetTemplate()
     {
-        return _templateChoice;
+        string selectedTemplate = _templateOptions[_extension][_templateChoice];
+        return selectedTemplate;
     }
 
     public string GetPath()
@@ -67,7 +39,8 @@ class FileRequest
         Dictionary<string, string> fileDict = new Dictionary<string, string>();
         fileDict.Add("name", _name);
         fileDict.Add("extension", _extension);
-        fileDict.Add("template", _templateChoice);
+        fileDict.Add("template", GetTemplate());
+        fileDict.Add("path", _path);
 
         return fileDict;
     }
