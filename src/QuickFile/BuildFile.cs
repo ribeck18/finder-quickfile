@@ -7,7 +7,7 @@ class BuildFile
         _filerequest = fileRequest;
     }
 
-    public FileType BuildFile()
+    public FileType CreateFile()
     {
         Dictionary<string, string> fileDict = _filerequest.GetFileDict();
         string extension = fileDict["extension"];
@@ -28,9 +28,10 @@ class BuildFile
             PythonType file = new PythonType(fileDict["name"], extension, fileDict["template"]);
             return file;
         }
-        else if (extension == "cs")
+        else
         {
-
+            CSharpType file = new CSharpType(fileDict["name"], extension, fileDict["template"]);
+            return file;
         }
     }
 }

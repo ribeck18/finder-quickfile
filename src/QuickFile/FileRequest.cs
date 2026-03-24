@@ -7,12 +7,16 @@ class FileRequest
     private string _templateChoice;
     private string _path;
 
-    public FileRequest(string name, string extension)
+    public FileRequest()
     {
-        _name = name;
-        _extension = extension;
-        _templateOptions = new Dictionary<string, Dictionary<int, string>>{
-            { "MarkDown", new Dictionary<int, string>{ { 1, "# MARKDOWN HEADER"} } }
+        // _name = name;
+        // _extension = extension;
+        _templateOptions = new Dictionary<string, Dictionary<int, string>>
+        {
+            {
+                "MarkDown",
+                new Dictionary<int, string> { { 1, "# MARKDOWN HEADER" } }
+            },
         };
     }
 
@@ -20,6 +24,16 @@ class FileRequest
     public void SetTemplate(string extension, int templateChoice)
     {
         _templateChoice = _templateOptions[extension][templateChoice];
+    }
+
+    public void SetName(string name)
+    {
+        _name = name;
+    }
+
+    public void SetExtension(string extension)
+    {
+        _extension = extension;
     }
 
     public string SetPath(string path)
@@ -42,10 +56,12 @@ class FileRequest
     {
         return _templateChoice;
     }
+
     public string GetPath()
     {
         return _path;
     }
+
     public Dictionary<string, string> GetFileDict()
     {
         Dictionary<string, string> fileDict = new Dictionary<string, string>();
