@@ -3,39 +3,47 @@ using System.IO;
 
 class Controller
 {
-    private string _path;
-    private Tui _tui;
+    private string _path = "files/";
+    private UserInterface _window;
 
-    public Controller(string path, Tui tui)
+    public Controller()
     {
-        _path = path;
-        _tui = tui;
+        _window = new UserInterface();
     }
 
-    private void RunUI()
+    public void RunUI()
     {
-        // _UI.RunUI();
-        _tui.RunTui();
-
-        //I need to make this so that it only returns when the ui is complete so that the next thing can begin.
+        //When the save button is clicked it also runs SaveAction.
+        _window.OnSaveClicked += SaveAction;
     }
-    private FileRequest RequestFile()
+    public UserInterface GetWindow()
     {
-        FileRequest fileRequest = new FileRequest(_tui.GetName(), _tui.GetExtension(), _tui.GetTemplateChoice(), _path);
+        return _window;
+    }
+
+    private void SaveAction(Dictionary<string, string> userEntryDict)
+    {
+        _window.Close();
+        SaveFile(userEntryDict);
+    }
+    private FileRequest RequestFile(Dictionary<string, string> userEntryDict)
+    {
+        //I need to use the info from the UI to build the fileRequest.
+        FileRequest fileRequest = new FileRequest(userEntryDict["name"], userEntryDict["extension"], int.Parse(userEntryDict["template"]), _path);
         return fileRequest;
     }
 
-    private FileType BuildFile()
+    private FileType BuildFile(Dictionary<string, string> userEntryDict)
     {
-        BuildFile buildFile = new BuildFile(RequestFile());
+        BuildFile buildFile = new BuildFile(RequestFile(userEntryDict));
         FileType file = buildFile.CreateFile();
 
         return file;
     }
 
-    private void SaveFile()
+    private void SaveFile(Dictionary<string, string> userEntryDict)
     {
-        FileType file = BuildFile();
+        FileType file = BuildFile(userEntryDict);
         string fileContent = file.GetTemplate();
         string path = $"{_path}/{file.GetFileName()}";
         //this is for debugging
@@ -44,17 +52,4 @@ class Controller
         File.WriteAllText(path, fileContent);
     }
 
-    public void RunController()
-    {
-
-        //Note: IDK if this will actually be a problem but I may need to find a way to make sure SaveFile Doesn't run until the UI is done.
-        // bool isRunning;
-        RunUI();
-        SaveFile();
-        //
-        // if (isRunning == false)
-        // {
-        //     SaveFile();
-        // }
-    }
 }
