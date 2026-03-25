@@ -1,7 +1,13 @@
-﻿
-//Initalize variables
-string path = "files";
-Tui tui = new Tui();
-Controller controller = new Controller(path, tui);
-//Run the program.
-controller.RunController();
+﻿using Avalonia;
+
+class Program
+{
+    [STAThread]
+    public static void Main(string[] args) =>
+        BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+
+    public static AppBuilder BuildAvaloniaApp() =>
+        AppBuilder.Configure<App>()
+            .UsePlatformDetect()
+            .LogToTrace();
+}

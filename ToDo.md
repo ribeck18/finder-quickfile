@@ -6,4 +6,3 @@
 
 # Edge Cases
 - When writing filenames that need snake case if someone types HellOWorld it turns to hell_o_world
-
