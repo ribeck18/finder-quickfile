@@ -13,6 +13,7 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            string[] args = desktop.Args ?? Array.Empty<string>();
             Controller controller = new Controller();
             controller.RunUI();
             desktop.MainWindow = controller.GetWindow();

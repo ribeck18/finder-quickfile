@@ -3,11 +3,19 @@ using System.IO;
 
 class Controller
 {
-    private string _path = "files/";
+    private string _path;
     private UserInterface _window;
 
-    public Controller()
+    public Controller(string[] args)
     {
+        if (args.Length > 0)
+        {
+            _path = args[0].TrimEnd('/');
+        }
+        else
+        {
+            _path = "files";
+        }
         _window = new UserInterface();
     }
 
@@ -46,6 +54,8 @@ class Controller
         FileType file = BuildFile(userEntryDict);
         string fileContent = file.GetTemplate();
         string path = $"{_path}/{file.GetFileName()}";
+
+
         //this is for debugging
         Console.WriteLine(path);
 
