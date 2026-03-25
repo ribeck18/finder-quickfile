@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 class UserInterface : Window
 {
@@ -11,6 +12,8 @@ class UserInterface : Window
     private TextBox _fileNameEntry = new TextBox();
     private ComboBox _typeSelection = new ComboBox();
     private ComboBox _templateSelection = new ComboBox();
+    private Button _saveButton = new Button();
+    private Dictionary<string, string> _fileRequestDict = new Dictionary<string, string>();
 
     public UserInterface()
     {
@@ -45,6 +48,7 @@ class UserInterface : Window
         stackpanel.Children.Add(BuildTypeSelection());
         stackpanel.Children.Add(template);
         stackpanel.Children.Add(BuildTemplateSelection());
+        stackpanel.Children.Add(BuildSaveButton());
 
         Content = stackpanel;
     }
@@ -74,5 +78,37 @@ class UserInterface : Window
         _templateSelection.SelectedIndex = 0;
 
         return _templateSelection;
+    }
+    private Button BuildSaveButton()
+    {
+        _saveButton.Content = "Save";
+        _saveButton.Click += OnSaveClick;
+
+        return _saveButton;
+    }
+    private void OnSaveClick(object? sender, RoutedEventArgs e)
+    {
+        //the ??"" Causes it to return an empty string if nothing is typed/selected
+        string name = _fileNameEntry.Text ?? "";
+        string extension = _typeSelection.SelectedItem?.ToString() ?? "";
+        string template = _templateSelection.SelectedItem?.ToString() ?? "1";
+        int templateChoice = int.Parse(template);
+
+        AssembleDict(name, extension, template);
+
+    }
+    private void AssembleDict(string name, string extension, string template)
+    {
+        _fileRequestDict.Add("name", name);
+        _fileRequestDict.Add("extension", extension);
+        _fileRequestDict.Add("template", template);
+
+        //For Debug:
+        Console.WriteLine($"{name}.{extension}   {template}");
+    }
+    public Dictionary<string, string> GetFileRequestDict()
+    {
+
+        return _fileRequestDict;
     }
 }
