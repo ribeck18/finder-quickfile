@@ -1,5 +1,9 @@
-# To Do 
-- build each of the file types
-- I found an issue with the way I have this structured, there is no reason for the other file types. So, I need to find a way to fix this...
-- Perhaps I could have the templates in each of the file types so that then they all have a different dictionary of templates
-- or they could have, a different content set for each so that There is a default content in each one. Or a content dict in the base and a selector method in each class so that it demonstrates polymorphism. Frankly, I just don't see a need for inheritance or polymorphism, however if I drop those classes, I go below my 8 class count.
+# TO DO 
+- Add templates for each extention type.
+- Build a UI
+- - The UI needs to have a name entry extention select and template select.
+- Find a way so that UI is totally complete before the program attempts to save the file.
+
+# Edge Cases
+- When writing filenames that need snake case if someone types HellOWorld it turns to hell_o_world
+

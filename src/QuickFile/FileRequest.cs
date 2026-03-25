@@ -17,8 +17,20 @@ class FileRequest
         {
             {
                 "md",
-                new Dictionary<int, string> { { 1, "# MARKDOWN HEADER" } }
+                new Dictionary<int, string> {{1, "# MARKDOWN HEADER"}}
             },
+            {
+                "txt",
+                new Dictionary<int, string> {{1, "Text File"}}
+            },
+            {
+                "py",
+                new Dictionary<int, string> {{1, "print('Hello World')"}}
+            },
+            {
+                "cs",
+                new Dictionary<int, string> {{1, "Console.WriteLine('Hello World')"}}
+            }
         };
     }
 
