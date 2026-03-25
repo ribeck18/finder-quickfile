@@ -6,8 +6,6 @@ class UserInterface : Window
     //Notes: make all of the elemenets a field in the class. Then Each one should have a build method (like a setter). Then in the Constructor each build should be called.
     //The purpose of this is so that when save button is pressed it can pull the data from each text box etc.
     //
-    //TO DO:
-    //Add a button with a save functionality. Probably should build a file request or something like that when the OnClick method runs.
 
     private TextBox _fileNameEntry = new TextBox();
     private ComboBox _typeSelection = new ComboBox();
