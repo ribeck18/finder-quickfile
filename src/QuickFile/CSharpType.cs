@@ -4,8 +4,7 @@ class CSharpType : FileType
 
     public override string FormatFileName()
     {
-        string nameString = ToPascalCase(_name);
-        string fileName = $"{nameString}.{_extension}";
+        string fileName = $"{ToPascalCase(_name)}.{_extension}";
 
         return fileName;
     }

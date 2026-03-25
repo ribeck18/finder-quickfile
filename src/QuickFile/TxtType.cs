@@ -6,10 +6,8 @@ class TxtType : FileType
 
     public override string FormatFileName()
     {
-        string nameString = $"{_name}.{_extension}";
-        string fileName = ToSnakeCase(nameString);
+        string nameString = $"{ToSnakeCase(_name)}.{_extension}";
 
-        _fileName = fileName;
-        return fileName;
+        return nameString;
     }
 }

@@ -7,10 +7,8 @@ class MarkdownType : FileType
 
     public override string FormatFileName()
     {
-        string nameString = $"{_name}.{_extension}";
-        string fileName = nameString.ToUpper();
+        string nameString = $"{_name.ToUpper()}.{_extension}";
 
-        _fileName = fileName;
-        return fileName;
+        return nameString;
     }
 }

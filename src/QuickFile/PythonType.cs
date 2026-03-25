@@ -6,8 +6,8 @@ class PythonType : FileType
     }
     public override string FormatFileName()
     {
-        string nameString = $"{_name}.{_extension}";
+        string nameString = $"{ToSnakeCase(_name)}.{_extension}";
 
-        return ToSnakeCase(nameString);
+        return nameString;
     }
 }
