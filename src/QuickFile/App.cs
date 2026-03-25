@@ -4,6 +4,7 @@ using Avalonia.Themes.Fluent;
 
 public class App : Application
 {
+
     public override void Initialize()
     {
         Styles.Add(new FluentTheme());
@@ -11,7 +12,11 @@ public class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            desktop.MainWindow = new UserInterface();
+        {
+            Controller controller = new Controller();
+            controller.RunUI();
+            desktop.MainWindow = controller.GetWindow();
+        }
 
         base.OnFrameworkInitializationCompleted();
     }

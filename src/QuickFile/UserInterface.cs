@@ -101,9 +101,10 @@ class UserInterface : Window
         _fileRequestDict.Add("extension", extension);
         _fileRequestDict.Add("template", template);
 
-        //For Debug:
-        Console.WriteLine($"{name}.{extension}   {template}");
+        OnSaveClicked?.Invoke(_fileRequestDict);
     }
+    public event Action<Dictionary<string, string>>? OnSaveClicked;
+
     public Dictionary<string, string> GetFileRequestDict()
     {
 
