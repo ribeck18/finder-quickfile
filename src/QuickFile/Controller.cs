@@ -1,6 +1,5 @@
 using System.IO;
 
-
 class Controller
 {
     private string _path;
@@ -10,12 +9,13 @@ class Controller
     {
         if (args.Length > 0)
         {
-            _path = args[0].TrimEnd('/');
+            _path = args[0].Trim().TrimEnd('/');
         }
         else
         {
             _path = "files";
         }
+
         _window = new UserInterface();
     }
 
@@ -24,6 +24,7 @@ class Controller
         //When the save button is clicked it also runs SaveAction.
         _window.OnSaveClicked += SaveAction;
     }
+
     public UserInterface GetWindow()
     {
         return _window;
@@ -34,10 +35,15 @@ class Controller
         _window.Close();
         SaveFile(userEntryDict);
     }
+
     private FileRequest RequestFile(Dictionary<string, string> userEntryDict)
     {
-        //I need to use the info from the UI to build the fileRequest.
-        FileRequest fileRequest = new FileRequest(userEntryDict["name"], userEntryDict["extension"], int.Parse(userEntryDict["template"]), _path);
+        FileRequest fileRequest = new FileRequest(
+            userEntryDict["name"],
+            userEntryDict["extension"],
+            int.Parse(userEntryDict["template"]),
+            _path
+        );
         return fileRequest;
     }
 
@@ -55,11 +61,6 @@ class Controller
         string fileContent = file.GetTemplate();
         string path = $"{_path}/{file.GetFileName()}";
 
-
-        //this is for debugging
-        Console.WriteLine(path);
-
         File.WriteAllText(path, fileContent);
     }
-
 }

@@ -17,7 +17,7 @@ class UserInterface : Window
     {
         Title = "Quick File";
         Width = 400;
-        Height = 400;
+        Height = 600;
 
 
         //Define the text elements
