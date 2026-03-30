@@ -17,23 +17,12 @@ class UserInterface : Window
     {
         Title = "Quick File";
         Width = 400;
-        Height = 400;
-
+        Height = 300;
 
         //Define the text elements
-        TextBlock fileName = new TextBlock
-        {
-            Text = "File Name:",
-        };
-        TextBlock extension = new TextBlock
-        {
-            Text = "File Type:",
-        };
-        TextBlock template = new TextBlock
-        {
-            Text = "Template:",
-        };
-
+        TextBlock fileName = new TextBlock { Text = "File Name:" };
+        TextBlock extension = new TextBlock { Text = "File Type:" };
+        TextBlock template = new TextBlock { Text = "Template:" };
 
         //organize all of the elemenets
         StackPanel stackpanel = new StackPanel();
@@ -77,6 +66,7 @@ class UserInterface : Window
 
         return _templateSelection;
     }
+
     private Button BuildSaveButton()
     {
         _saveButton.Content = "Save";
@@ -84,6 +74,7 @@ class UserInterface : Window
 
         return _saveButton;
     }
+
     private void OnSaveClick(object? sender, RoutedEventArgs e)
     {
         //the ??"" Causes it to return an empty string if nothing is typed/selected
@@ -93,8 +84,8 @@ class UserInterface : Window
         int templateChoice = int.Parse(template);
 
         AssembleDict(name, extension, template);
-
     }
+
     private void AssembleDict(string name, string extension, string template)
     {
         _fileRequestDict.Add("name", name);
@@ -103,11 +94,11 @@ class UserInterface : Window
 
         OnSaveClicked?.Invoke(_fileRequestDict);
     }
+
     public event Action<Dictionary<string, string>>? OnSaveClicked;
 
     public Dictionary<string, string> GetFileRequestDict()
     {
-
         return _fileRequestDict;
     }
 }
