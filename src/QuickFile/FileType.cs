@@ -64,5 +64,5 @@ abstract class FileType
         return result;
     }
 
-    public abstract string[] GetKeyList();
+    public abstract static string[] GetKeyList();
 }

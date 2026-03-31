@@ -12,8 +12,7 @@ class UserInterface : Window
     private ComboBox _templateSelection = new ComboBox();
     private Button _saveButton = new Button();
     private Dictionary<string, string> _fileRequestDict = new Dictionary<string, string>();
-    private int _templateChoice = 1;
-
+    private readonly Dictionary<string, List<string>> _templateOptions;
     public UserInterface()
     {
         Title = "Quick File";
