@@ -87,6 +87,7 @@ classDiagram
     +UserInterface()
     -BuildFileNameEntry() TextBox
     -BuildTypeSelection() ComboBox
+    -OnTypeSelectionChanged(sender: object?, e: SelectionChangedEventArgs)
     -BuildTemplateSelection() ComboBox
     -BuildSaveButton() Button
     -OnSaveClick(sender: object?, e: RoutedEventArgs)
@@ -98,10 +99,9 @@ classDiagram
   class FileRequest {
     -_name: string
     -_extension: string
-    -_templateOptions: Dictionary~string,Dictionary~int,string~~
-    -_templateChoice: int
+    -_templateChoice: string
     -_path: string
-    +FileRequest(name: string, extension: string, templateChoice: int, path: string)
+    +FileRequest(name: string, extension: string, templateChoice: string, path: string)
     +GetTemplate() string
     +GetPath() string
     +GetFileDict() Dictionary~string,string~
@@ -114,6 +114,7 @@ classDiagram
   }
 
   class FileType {
+    <<abstract>>
     #_name: string
     #_extension: string
     -_template: string
@@ -147,17 +148,25 @@ classDiagram
     +FormatFileName() string
   }
 
-  class Tui {
-    -_name: string
-    -_extension: string
-    -_templateChoice: int
-    -SetName(name: string)
-    -SetExtension(extension: string)
-    -SetTemplateChoice(templateChoice: int)
-    +GetName() string
-    +GetExtension() string
-    +GetTemplateChoice() int
-    +RunTui()
+  class Templates {
+    <<static>>
+    -_mdTemplates: Dictionary~string,string~
+    -_txtTemplates: Dictionary~string,string~
+    -_pyTemplates: Dictionary~string,string~
+    -_csTemplates: Dictionary~string,string~
+    -_mdKeyList: List~string~
+    -_txtKeyList: List~string~
+    -_pyKeyList: List~string~
+    -_csKeyList: List~string~
+    +GetKeyList(extension: string)$ List~string~
+    +GetChosenTemplate(extension: string, key: string)$ string
+    -GetTemplateDict(extension: string)$ Dictionary~string,string~
+  }
+
+  class Logger {
+    <<static>>
+    -LogPath: string
+    +Log(message: string)$
   }
 
   Program ..> App : configures
@@ -171,4 +180,7 @@ classDiagram
   FileType <|-- MarkdownType
   FileType <|-- PythonType
   FileType <|-- CSharpType
+  FileRequest ..> Templates : uses
+  UserInterface ..> Templates : uses
+  UserInterface ..> Logger : uses
 ```
