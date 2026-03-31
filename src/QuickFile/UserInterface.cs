@@ -12,6 +12,7 @@ class UserInterface : Window
     private ComboBox _templateSelection = new ComboBox();
     private Button _saveButton = new Button();
     private Dictionary<string, string> _fileRequestDict = new Dictionary<string, string>();
+    private int _templateChoice = 1;
 
     public UserInterface()
     {
@@ -59,9 +60,14 @@ class UserInterface : Window
         return _typeSelection;
     }
 
+
+    //Need a way for this to show the correct files based on what extension type they use.
+    //As of right now this works, but it will be an error if the specific FileType doesn't have the template you are specifiying.
+
     private ComboBox BuildTemplateSelection()
     {
         _templateSelection.Items.Add(1);
+        _templateSelection.Items.Add(2);
         _templateSelection.SelectedIndex = 0;
 
         return _templateSelection;
@@ -77,10 +83,12 @@ class UserInterface : Window
 
     private void OnSaveClick(object? sender, RoutedEventArgs e)
     {
-        //the ??"" Causes it to return an empty string if nothing is typed/selected
         string name = _fileNameEntry.Text ?? "";
         string extension = _typeSelection.SelectedItem?.ToString() ?? "";
         string template = _templateSelection.SelectedItem?.ToString() ?? "1";
+        //for debug
+        Logger.Log($"template int used: {template}");
+
         int templateChoice = int.Parse(template);
 
         AssembleDict(name, extension, template);

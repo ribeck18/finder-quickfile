@@ -17,7 +17,7 @@ class FileRequest
         {
             {
                 "md",
-                new Dictionary<int, string> {{1, "# MARKDOWN HEADER"}, {2, @"
+                new Dictionary<int, string> {{1, "# Hello World"}, {2, @"
 # Project Title
 
 ## Overview
@@ -76,7 +76,7 @@ to discuss what you would like to change.
             },
             {
             "txt",
-                new Dictionary<int, string> { { 1, "Text File" } }
+                new Dictionary<int, string> { { 1, "Hello World" } }
             },
             {
             "py",
