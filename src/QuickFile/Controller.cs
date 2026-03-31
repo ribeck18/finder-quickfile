@@ -41,7 +41,7 @@ class Controller
         FileRequest fileRequest = new FileRequest(
             userEntryDict["name"],
             userEntryDict["extension"],
-            int.Parse(userEntryDict["template"]),
+            userEntryDict["template"],
             _path
         );
         return fileRequest;

@@ -5,16 +5,16 @@ class UserInterface : Window
 {
     //Notes: make all of the elemenets a field in the class. Then Each one should have a build method (like a setter). Then in the Constructor each build should be called.
     //The purpose of this is so that when save button is pressed it can pull the data from each text box etc.
-    //
-
     private TextBox _fileNameEntry = new TextBox();
     private ComboBox _typeSelection = new ComboBox();
     private ComboBox _templateSelection = new ComboBox();
     private Button _saveButton = new Button();
     private Dictionary<string, string> _fileRequestDict = new Dictionary<string, string>();
 
+
     public UserInterface()
     {
+
         Title = "Quick File";
         Width = 400;
         Height = 300;
@@ -56,17 +56,39 @@ class UserInterface : Window
         _typeSelection.Items.Add("cs");
         _typeSelection.SelectedIndex = 0;
 
+        //Wires to the template selection combobox so that it populates depending on the currently selected item.
+        _typeSelection.SelectionChanged += OnTypeSelectionChanged;
+
         return _typeSelection;
     }
 
+    //Event handler for the type selection change.
+    private void OnTypeSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        string selectedType = _typeSelection.SelectedItem?.ToString() ?? "";
+        List<string> templateKeys = Templates.GetKeyList(selectedType);
+
+        //rebuild the template selection
+        _templateSelection.Items.Clear();
+
+        foreach (string templateKey in templateKeys)
+        {
+            _templateSelection.Items.Add(templateKey);
+        }
+        //Reset the currently selected template to the first one in the list
+        _templateSelection.SelectedIndex = 0;
+    }
+
+    //Builds the template selection combo box. However this it populated only using the OnTypeSelectionChanged Event handler.
     private ComboBox BuildTemplateSelection()
     {
-        _templateSelection.Items.Add(1);
-        _templateSelection.SelectedIndex = 0;
+        OnTypeSelectionChanged(null, null!);
+        _templateSelection.SelectedItem = 0;
 
         return _templateSelection;
     }
 
+    // Builds the save button. OnSaveClicked is ran when button pressed.
     private Button BuildSaveButton()
     {
         _saveButton.Content = "Save";
@@ -75,17 +97,19 @@ class UserInterface : Window
         return _saveButton;
     }
 
+    //Save button click event. Gets all of the data from the UI and calls AssembleDict function.
     private void OnSaveClick(object? sender, RoutedEventArgs e)
     {
-        //the ??"" Causes it to return an empty string if nothing is typed/selected
         string name = _fileNameEntry.Text ?? "";
         string extension = _typeSelection.SelectedItem?.ToString() ?? "";
-        string template = _templateSelection.SelectedItem?.ToString() ?? "1";
-        int templateChoice = int.Parse(template);
+        string template = _templateSelection.SelectedItem?.ToString() ?? "helloWorld";
+        //for debug
+        Logger.Log($"template key used: {template}");
 
         AssembleDict(name, extension, template);
     }
 
+    //Build a dictionary with all the user entered data so that A FileRequest can be made.
     private void AssembleDict(string name, string extension, string template)
     {
         _fileRequestDict.Add("name", name);
