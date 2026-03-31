@@ -4,11 +4,6 @@ class Controller
 {
     private string _path;
     private UserInterface _window;
-    //Had to instantiate these here becuase I need KeyList from each class and you can't do static methods on abstract classes.
-    private MarkdownType _md;
-    private TxtType _txt;
-    private PythonType _py;
-    private CSharpType _cs;
 
     public Controller(string[] args)
     {
@@ -20,9 +15,6 @@ class Controller
         {
             _path = "files";
         }
-
-        MarkdownType md = new MarkdownType();
-
 
         _window = new UserInterface();
     }
@@ -49,7 +41,7 @@ class Controller
         FileRequest fileRequest = new FileRequest(
             userEntryDict["name"],
             userEntryDict["extension"],
-            int.Parse(userEntryDict["template"]),
+            userEntryDict["template"],
             _path
         );
         return fileRequest;

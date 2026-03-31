@@ -102,11 +102,9 @@ class UserInterface : Window
     {
         string name = _fileNameEntry.Text ?? "";
         string extension = _typeSelection.SelectedItem?.ToString() ?? "";
-        string template = _templateSelection.SelectedItem?.ToString() ?? "1";
+        string template = _templateSelection.SelectedItem?.ToString() ?? "helloWorld";
         //for debug
-        Logger.Log($"template int used: {template}");
-
-        int templateChoice = int.Parse(template);
+        Logger.Log($"template key used: {template}");
 
         AssembleDict(name, extension, template);
     }
