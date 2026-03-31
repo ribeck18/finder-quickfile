@@ -28,11 +28,6 @@ abstract class FileType
         return _extension;
     }
 
-    // public string GetFileName()
-    // {
-    //     string fileName = $"{_name}.{_extension}";
-    //     return fileName;
-    // }
     public virtual string GetFileName()
     {
         string fileName = FormatFileName();
@@ -68,4 +63,6 @@ abstract class FileType
 
         return result;
     }
+
+    public abstract string[] GetKeyList();
 }
