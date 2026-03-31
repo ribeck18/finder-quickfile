@@ -18,8 +18,8 @@ flowchart TD
 
     subgraph UserInteraction["User Interaction"]
         J --> K["User enters filename\nin TextBox"]
-        K --> L["User selects file type\nComboBox: md · txt · py · cs"]
-        L --> M["User selects template\nComboBox: 1 · 2 …"]
+        K --> L["User selects file type\nComboBox: md, txt, py, cs"]
+        L --> M["User selects template\nComboBox: 1, 2, ..."]
         M --> N["User clicks Save"]
     end
 

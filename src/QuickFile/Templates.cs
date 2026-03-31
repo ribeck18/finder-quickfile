@@ -105,6 +105,30 @@ namespace ProjectName
     };
 
     //make the key lists here.
+    private static string[] _mdKeyList = ["helloWorld", "readme"];
+    private static string[] _txtKeyList = ["helloWorld"];
+    private static string[] _pyKeyList = ["helloWorld"];
+    private static string[] _csKeyList = ["helloWorld"];
+
+    private static string[] GetKeyList(string extension)
+    {
+        if (extension == "md")
+        {
+            return _mdKeyList;
+        }
+        else if (extension == "txt")
+        {
+            return _txtKeyList;
+        }
+        else if (extension == "py")
+        {
+            return _pyKeyList;
+        }
+        else
+        {
+            return _csKeyList;
+        }
+    }
 
     private static Dictionary<string, string> GetTemplateDict(string extension)
     {
