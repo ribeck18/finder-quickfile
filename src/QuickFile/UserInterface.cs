@@ -15,6 +15,10 @@ class UserInterface : Window
     private readonly Dictionary<string, List<string>> _templateOptions;
     public UserInterface()
     {
+        _templateOptions = new Dictionary<string, List<string>>{
+            {"md", MarkdownType.GetKeyList()}
+        };
+
         Title = "Quick File";
         Width = 400;
         Height = 300;

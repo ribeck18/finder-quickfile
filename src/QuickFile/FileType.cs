@@ -65,4 +65,9 @@ abstract class FileType
     }
 
     public abstract static string[] GetKeyList();
+
+    public Dictionary<string, string> GetTemplateDict()
+    {
+        return _templateDict;
+    }
 }
