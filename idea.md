@@ -29,6 +29,10 @@
 - - I could make it static in each derived class but in think that defeats the purpose of an abstract method as it wouldn't be forced to implement it.
 - - I could just keep the current setup and just instantiate the class in the constructor in User Interface.
 
+### Answer
+
+- I should just instantiate the object in the controller and pass it into the classes as needed.
+
 ### Question 2
 
 - If i have a memebr variable that has the same name and type but just contains slightly different data. Can I create a universal getter, or do I need to do an abstract method and then type it out in each derived class.?
