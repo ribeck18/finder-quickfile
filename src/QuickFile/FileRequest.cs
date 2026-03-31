@@ -21,7 +21,6 @@ class FileRequest
         Dictionary<string, string> templateDict = new Dictionary<string, string>();
         if (type == "md")
         {
-            templateDict = MarkdownType.
         }
     }
 

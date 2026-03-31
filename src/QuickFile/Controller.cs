@@ -4,7 +4,6 @@ class Controller
 {
     private string _path;
     private UserInterface _window;
-
     //Had to instantiate these here becuase I need KeyList from each class and you can't do static methods on abstract classes.
     private MarkdownType _md;
     private TxtType _txt;
@@ -21,6 +20,9 @@ class Controller
         {
             _path = "files";
         }
+
+        MarkdownType md = new MarkdownType();
+
 
         _window = new UserInterface();
     }
