@@ -104,13 +104,14 @@ namespace ProjectName
 "}
     };
 
-    //make the key lists here.
-    private static string[] _mdKeyList = ["helloWorld", "readme"];
-    private static string[] _txtKeyList = ["helloWorld"];
-    private static string[] _pyKeyList = ["helloWorld"];
-    private static string[] _csKeyList = ["helloWorld"];
+    //Lists of the keys in each dictionary respectivly
+    private static List<string> _mdKeyList = _mdTemplates.Keys.ToList();
+    private static List<string> _txtKeyList = _txtTemplates.Keys.ToList();
+    private static List<string> _pyKeyList = _pyTemplates.Keys.ToList();
+    private static List<string> _csKeyList = _csTemplates.Keys.ToList();
 
-    private static string[] GetKeyList(string extension)
+    //Get the list of keys for the template dict.
+    public static List<string> GetKeyList(string extension)
     {
         if (extension == "md")
         {
@@ -130,6 +131,7 @@ namespace ProjectName
         }
     }
 
+    //Get the template dictionary depending on the extension argument.
     private static Dictionary<string, string> GetTemplateDict(string extension)
     {
         if (extension == "md")
@@ -150,9 +152,9 @@ namespace ProjectName
         }
     }
 
+    //Get the correct template string to give to the file request.
     public static string GetChosenTemplate(string extension, string key)
     {
-        // Returns the template as a string. 
         Dictionary<string, string> templateDict = GetTemplateDict(extension);
 
         string template = templateDict[key];
