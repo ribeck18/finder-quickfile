@@ -14,12 +14,11 @@ class UserInterface : Window
 
     public UserInterface()
     {
-
         Title = "Quick File";
         Width = 400;
         Height = 300;
 
-        //Define the text elements
+        //Define/build the text elements
         TextBlock fileName = new TextBlock { Text = "File Name:" };
         TextBlock extension = new TextBlock { Text = "File Type:" };
         TextBlock template = new TextBlock { Text = "Template:" };
@@ -29,6 +28,7 @@ class UserInterface : Window
         stackpanel.Spacing = 10;
         stackpanel.Margin = new Avalonia.Thickness(20);
 
+        //Build in order the parts of the ui
         stackpanel.Children.Add(fileName);
         stackpanel.Children.Add(BuildFileNameEntry());
         stackpanel.Children.Add(extension);
@@ -68,13 +68,13 @@ class UserInterface : Window
         string selectedType = _typeSelection.SelectedItem?.ToString() ?? "";
         List<string> templateKeys = Templates.GetKeyList(selectedType);
 
-        //rebuild the template selection
+        //clear and repopulate the template combobox.
         _templateSelection.Items.Clear();
-
         foreach (string templateKey in templateKeys)
         {
             _templateSelection.Items.Add(templateKey);
         }
+
         //Reset the currently selected template to the first one in the list
         _templateSelection.SelectedIndex = 0;
     }

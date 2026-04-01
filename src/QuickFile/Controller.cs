@@ -7,6 +7,7 @@ class Controller
 
     public Controller(string[] args)
     {
+        //if the argument is not passed through or is blank when user runs the program it will add the file @ /files
         if (args.Length > 0)
         {
             _path = args[0].Trim().TrimEnd('/');
@@ -23,6 +24,7 @@ class Controller
     {
         //When the save button is clicked it also runs SaveAction.
         _window.OnSaveClicked += SaveAction;
+        //UI runs until the save action is taken. Then it closes the ui
     }
 
     public UserInterface GetWindow()
@@ -32,12 +34,14 @@ class Controller
 
     private void SaveAction(Dictionary<string, string> userEntryDict)
     {
+        //closes the UI saves the file.
         _window.Close();
         SaveFile(userEntryDict);
     }
 
     private FileRequest RequestFile(Dictionary<string, string> userEntryDict)
     {
+        //Assembles a file request using user input
         FileRequest fileRequest = new FileRequest(
             userEntryDict["name"],
             userEntryDict["extension"],
@@ -49,6 +53,7 @@ class Controller
 
     private FileType BuildFile(Dictionary<string, string> userEntryDict)
     {
+        //Uses the file request to build the FileType derived class.
         BuildFile buildFile = new BuildFile(RequestFile(userEntryDict));
         FileType file = buildFile.CreateFile();
 
@@ -57,6 +62,7 @@ class Controller
 
     private void SaveFile(Dictionary<string, string> userEntryDict)
     {
+        // Writes the file to the path argument.
         FileType file = BuildFile(userEntryDict);
         string fileContent = file.GetTemplate();
         string path = $"{_path}/{file.GetFileName()}";

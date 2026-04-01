@@ -10,6 +10,7 @@ class FileRequest
     {
         _name = name;
         _extension = extension;
+        //template choice is the template key 
         _templateChoice = templateChoice;
         _path = path;
     }

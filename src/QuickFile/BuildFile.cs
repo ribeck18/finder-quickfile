@@ -9,9 +9,9 @@ class BuildFile
 
     public FileType CreateFile()
     {
+        //Uses the FileRequest class to build a derived FileType.
         Dictionary<string, string> fileDict = _filerequest.GetFileDict();
         string extension = fileDict["extension"];
-        //add several if statements here to check what file extension is in the dic. then build a file using the correct file type.
 
         if (extension == "txt")
         {

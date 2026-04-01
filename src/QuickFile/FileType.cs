@@ -5,8 +5,6 @@ abstract class FileType
     //Attributes
     protected string _name;
     protected string _extension;
-
-    // private string _content;
     private string _template;
 
     //Constructor
@@ -42,6 +40,7 @@ abstract class FileType
         return _template;
     }
 
+    //Name Formatters.
     protected static string ToSnakeCase(string input)
     {
         string result = Regex.Replace(input, @"\s", "_");

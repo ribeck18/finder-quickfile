@@ -57,7 +57,8 @@ to discuss what you would like to change.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-"}
+"},
+        {"blank", ""}
     };
 
     private static Dictionary<string, string> _txtTemplates = new Dictionary<string, string>{
@@ -78,13 +79,15 @@ to discuss what you would like to change.
 
 # Testing Dependencies
 
-"}
+"},
+        {"blank", ""}
     };
 
     private static Dictionary<string, string> _pyTemplates = new Dictionary<string, string>{
         {"helloWorld", @"hello_world = 'Hello World!'
 print(hello_world)
-            "}
+            "},
+        {"blank", ""}
     };
 
     private static Dictionary<string, string> _csTemplates = new Dictionary<string, string>{
@@ -101,7 +104,8 @@ namespace ProjectName
         }
     }
 }
-"}
+"},
+        {"blank", ""}
     };
 
     //Lists of the keys in each dictionary respectivly
