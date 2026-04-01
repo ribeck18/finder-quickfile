@@ -28,6 +28,28 @@ class UserInterface : Window
         ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
         SystemDecorations = SystemDecorations.BorderOnly;
 
+        Content = BuildWindow();
+    }
+
+    private Control BuildWindow()
+    {
+        Grid root = new Grid();
+        //Defines the rows of the grid -- 2 rows, one for title bar, one for content.
+        root.RowDefinitions = RowDefinitions.Parse("40,*");
+
+        Control titleBar = BuildTitleBar();
+        Grid.SetRow(titleBar, 0);
+
+        Control content = BuildWindowContent();
+        Grid.SetRow(content, 1);
+
+        root.Children.Add(titleBar);
+        root.Children.Add(content);
+
+        return root;
+    }
+    private Control BuildWindowContent()
+    {
         //Define/build the text elements
         TextBlock fileName = new TextBlock { Text = "File Name:" };
         TextBlock extension = new TextBlock { Text = "File Type:" };
@@ -38,7 +60,6 @@ class UserInterface : Window
         stackpanel.Spacing = 10;
         stackpanel.Margin = new Avalonia.Thickness(20);
 
-        //Build in order the parts of the ui
         stackpanel.Children.Add(fileName);
         stackpanel.Children.Add(BuildFileNameEntry());
         stackpanel.Children.Add(extension);
@@ -47,7 +68,8 @@ class UserInterface : Window
         stackpanel.Children.Add(BuildTemplateSelection());
         stackpanel.Children.Add(BuildSaveButton());
 
-        Content = stackpanel;
+        return stackpanel;
+
     }
 
     private TextBox BuildFileNameEntry()
@@ -137,6 +159,8 @@ class UserInterface : Window
     }
 
     //These are for the layout of the page and macOS Styling.
+
+    //This is the top bar that has the close btn and the min/max btn
     private Control BuildTitleBar()
     {
         Panel titleBar = new Panel
@@ -151,5 +175,28 @@ class UserInterface : Window
             Margin = new Avalonia.Thickness(12, 0, 0, 0),
             VerticalAlignment = VerticalAlignment.Center
         };
+
+        trafficLights.Children.Add(MakeTrafficLights("#FF5F57", () => Close()));
+        // trafficLights.Children.Add(MakeTrafficLights("FFBD2E", () => WindowState.Minimized));
+        // trafficLights.Children.Add(MakeTrafficLights("28C840", () => WindowState.FullScreen));
+
+        titleBar.Children.Add(trafficLights);
+
+        return titleBar;
+    }
+    private Control MakeTrafficLights(string color, Action onClick)
+    {
+        Button btn = new Button
+        {
+            Width = 12,
+            Height = 12,
+            CornerRadius = new Avalonia.CornerRadius(6),
+            Background = new SolidColorBrush(Color.Parse(color)),
+            BorderThickness = new Avalonia.Thickness(0),
+            Padding = new Avalonia.Thickness(0)
+        };
+
+        btn.Click += (_, _) => onClick();
+        return btn;
     }
 }
