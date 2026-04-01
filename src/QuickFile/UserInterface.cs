@@ -1,5 +1,10 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Styling;
+using Avalonia.Platform;
+using Avalonia.Layout;
 
 class UserInterface : Window
 {
@@ -14,9 +19,14 @@ class UserInterface : Window
 
     public UserInterface()
     {
+        //Window Settings
         Title = "Quick File";
         Width = 400;
         Height = 300;
+        TransparencyLevelHint = new[] { WindowTransparencyLevel.AcrylicBlur };
+        ExtendClientAreaToDecorationsHint = true;
+        ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
+        SystemDecorations = SystemDecorations.BorderOnly;
 
         //Define/build the text elements
         TextBlock fileName = new TextBlock { Text = "File Name:" };
@@ -124,5 +134,22 @@ class UserInterface : Window
     public Dictionary<string, string> GetFileRequestDict()
     {
         return _fileRequestDict;
+    }
+
+    //These are for the layout of the page and macOS Styling.
+    private Control BuildTitleBar()
+    {
+        Panel titleBar = new Panel
+        {
+            Background = new SolidColorBrush(Color.Parse("#ECECEC"))
+        };
+
+        StackPanel trafficLights = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Spacing = 9,
+            Margin = new Avalonia.Thickness(12, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center
+        };
     }
 }
