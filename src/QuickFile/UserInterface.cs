@@ -1,8 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using Avalonia.Styling;
-using Avalonia.Platform;
 using Avalonia.Layout;
 
 class UserInterface : Window

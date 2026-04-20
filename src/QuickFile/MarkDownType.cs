@@ -12,3 +12,4 @@ class MarkdownType : FileType
         return nameString;
     }
 }
+
